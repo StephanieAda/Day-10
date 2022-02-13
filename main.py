@@ -1,19 +1,38 @@
-# Docstrings
-# functions with output
+# This is going to ask for the month and year and tell you how many days was in that particular month
 
-def format_name(f_name,l_name):
-  """Take frst and last name and return title case version of the name."""
-  if f_name == "" or l_name == "":
-    return ("You didn't provide valid input")
-  name = ""
-  name += f_name.title() + " " + l_name.title()
+def is_leap(isyear):
+  if year % 4 == 0:
+    if year % 100 == 0:
+      if year % 400 == 0:
+        return True
+      else:
+        return False
+    else:
+      return True
+  else:
+    return False
+   
 
-  return name
+# is_leap
+def days_in_month(year,month):
+  
+  month_days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+  smonth = month - 1
+  
+  if is_leap(year) == True:
+    month_days = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+    
+    return month_days[smonth]
+   
+  return month_days[smonth]
 
-print(format_name(input("What is your first name? ") , input("What is your last name? ")))
 
 
+  
+  
+#🚨 Do NOT change any of the code below 
+year = int(input("Enter a year: "))
+month = int(input("Enter a month: "))
+days = days_in_month(year, month)
+print(days)
 
-"""
-you can also use docstring to make comments, but thats too bothersome
-"""
