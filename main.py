@@ -1,38 +1,49 @@
-# This is going to ask for the month and year and tell you how many days was in that particular month
+# Calculator
 
-def is_leap(isyear):
-  if year % 4 == 0:
-    if year % 100 == 0:
-      if year % 400 == 0:
-        return True
-      else:
-        return False
-    else:
-      return True
-  else:
-    return False
-   
+# Add
+def add(n1,n2):
+  return n1 + n2
+# Minus
+def minus(n1,n2):
+  return n1 - n2
+# Multiply
+def multiply(n1,n2):
+  return n1 * n2
+# Divide
+def divide(n1,n2):
+  return n1 / n2
 
-# is_leap
-def days_in_month(year,month):
+
+operations = {"+":add,
+"-": minus,
+"*": multiply,
+"/": divide,
+} 
+
+num1 = int(input("What's the first number?: "))
+
+for i in operations:
+  print(i)
+math = input("pick out an operation from the line above " )
+
+num2 = int(input("What's the second number?: "))
+
+mathoperation = operations[math] 
+first_answer = mathoperation(num1, num2)
+
+print(f"{num1} {math} {num2} = {first_answer} ") 
+
+stop = False
+while not stop:
   
-  month_days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-  smonth = month - 1
+  math = input("Pick another operation: ")
+  num3 = int(input("What's the next number?: "))
+  mathoperation = operations[math]
+  second_answer = mathoperation(first_answer,num3)
+  print(f"{first_answer} {math} {num3} = {second_answer}")
+
+  stop_now = input(f"Type 'y' to continue calculating with {second_answer} , or type 'n' to quit: ")
+  if stop_now == "n":
+    stop = True
+    print("Thanks for calculating with us :) ")
   
-  if is_leap(year) == True:
-    month_days = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-    
-    return month_days[smonth]
-   
-  return month_days[smonth]
-
-
-
-  
-  
-#🚨 Do NOT change any of the code below 
-year = int(input("Enter a year: "))
-month = int(input("Enter a month: "))
-days = days_in_month(year, month)
-print(days)
-
